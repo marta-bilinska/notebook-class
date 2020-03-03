@@ -9,7 +9,7 @@ class Note:
     Match against astring in searches and store tags for each note.
     '''
 
-    def __init__(self, memo, tags=''):
+    def __init__(self, memo: str, tags=''):
         '''initialize a note with memo and optional space-separated tags.
          Automatically set the note'screation date and a unique id.
          '''
@@ -25,7 +25,7 @@ class Note:
         Return True if it matches, False otherwise.
         Search is case sensitive and matches both text andtags.
         '''
-        return filter in self.memo or filter in self.tags
+        return filter in self.tags or filter in self.memo
 
 
 class Notebook:
@@ -39,7 +39,10 @@ class Notebook:
 
     def new_note(self, memo, tags=''):
         '''Create a new note and add it to the list.'''
-        self.notes.append(Note(memo, tags))
+        n = Note(memo, tags)
+        self.notes.append(n)
+        return n
+
 
     def modify_memo(self, note_id, memo):
         '''
@@ -58,7 +61,7 @@ class Notebook:
                 break
 
     def search(self, filter):
-        '''Find all notes that match the given filterstring.'''
+        '''Find all notes that match the given filter string.'''
         return [note for note in self.notes if note.match(filter)]
 
 

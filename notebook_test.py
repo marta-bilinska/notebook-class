@@ -31,5 +31,29 @@ def main():
     print(note.__init__("hello world", "this is a tag"))
 
 
+def notebook__test():
+    noteb = notebook.Notebook()
+    note1 = noteb.new_note("Hello, world!", "hello")
+    print("Unmodified first note: ", note1.memo)
+    noteb.modify_memo(note1.id, "La de dah day!")
+    noteb.modify_tags(note1.id, 'day')
+    print("First note modified using 'modify_memo' method: ", note1.memo)
+
+    note2 = noteb.new_note("Hello, world!", "hello")
+    note3 = noteb.new_note('Hello, heyyy!!', "hey hello")
+    print("Second note: ", note2.memo)
+
+    print("Does the 'Hello, world!' note  match 'hello'?")
+    print(note2.match("hello"))
+    print("Does the 'Heyyy!!' note  match 'hey'?")
+    print(note3.match("hey"))
+    print("Does the 'Heyyy!!' note  match 'bla'?")
+    print(note3.match("bla"))
+    print("All of the notes that include 'hello': ")
+    for i in noteb.search('hello'):
+        print(i.memo)
+
+
 if __name__ == "__main__":
     main()
+    notebook__test()
